@@ -4,7 +4,7 @@
 
 ## 📌 Ownership
 
-FlowState was designed and built entirely by the **Bit-by-Bit** team for the Bit N Build hackathon.
+FlowState was designed and built entirely by the **Bit-N-Build** team for the Bit-N-Build hackathon.
 
 Our team created the multi-agent energy architecture, simulation environment, digital-twin interface, energy optimization components, resilience layer, P2P coordination, autonomous recovery planning, and FlowState visualization.
 
@@ -214,8 +214,8 @@ Visit `http://localhost:3000` to open the FlowState digital twin.
 
 ## 👥 Team
 
-**Bit-by-Bit — FlowState**
+**Bit-N-Build — FlowState**
 
 | Prithvi S P | Darshan Pawar | Chandan Kumar K |
 
-Designed and built entirely by the **Bit-by-Bit** team for the **Bit N Build** Hackathon.
+Designed and built entirely by the **Bit-N-Build** team for the **Bit-N-Build** Hackathon.

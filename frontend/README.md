@@ -1,4 +1,4 @@
-This is the FlowState digital twin frontend, designed and built entirely by the **Bit-by-Bit** team with [Next.js](https://nextjs.org).
+This is the FlowState digital twin frontend, designed and built entirely by the **Bit-N-Build** team with [Next.js](https://nextjs.org).
 
 ## Getting Started
 
