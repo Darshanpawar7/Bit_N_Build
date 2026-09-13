@@ -550,3 +550,59 @@ P2P coordination, autonomous recovery planning and the FlowState visualisation.
 <b>Prithvi S P</b> · <b>Darshan Pawar</b> · <b>Chandan Kumar K</b>
 <br><sub>Track: Decentralised Energy Systems & Micro-Grids</sub>
 </div>
+
+# 🚨 Code Plagiarism / Unauthorized Copy
+
+This repository appears to be an **exact copy of the previously developed and published project [[AGENTGRID](https://github.com/abd-RAHEEM/AGENTGRID)](https://github.com/abd-RAHEEM/AGENTGRID)**.
+
+## 🔗 Original Project
+
+**AGENTGRID:**
+https://github.com/abd-RAHEEM/AGENTGRID
+
+The original project was developed and published approximately **7 months before this repository**, with the Git commit history providing a verifiable timeline of its development.
+
+## 🔍 Evidence of Copying
+
+A direct comparison of the two repositories shows substantial and/or exact overlap across multiple parts of the project, including:
+
+* Identical or substantially identical source code
+* Identical project structure
+* Identical file organization
+* Identical implementation and logic
+* Identical functionality
+* Similar or identical documentation and project descriptions
+
+This does **not appear to be merely a case of implementing the same idea or solving the same problem**.
+
+The underlying implementation and code appear to have been directly copied from the original project.
+
+## 🕒 Development Timeline
+
+The original repository contains Git commits dating back approximately **7 months**, establishing that the project and its implementation existed publicly well before this repository.
+
+The commit history can be independently verified through GitHub:
+
+**Original repository:**
+https://github.com/abd-RAHEEM/AGENTGRID
+
+## ⚠️ Hackathon Submission
+
+If this repository is being submitted to a **hackathon or competition as original work**, I request that the organizers review the development history and compare both repositories before evaluating the submission.
+
+The Git history, source code, and repository contents provide independently verifiable evidence that the original implementation predates this repository.
+
+## 📌 Request
+
+Please clarify the origin of the code used in this repository and provide appropriate attribution to the original project and author.
+
+If the code was copied without permission or without complying with the original project's license, I request that the copied material be removed or that the repository be appropriately corrected and attributed.
+
+---
+
+### Original Work
+
+**Repository:** https://github.com/abd-RAHEEM/AGENTGRID
+**Development history:** Approximately 7 months prior to this repository
+
+> This issue is being raised to document the apparent code duplication and allow the repository owners and, if applicable, hackathon organizers to independently verify the claims using the publicly available Git history and source code.
