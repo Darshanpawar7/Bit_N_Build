@@ -61,16 +61,21 @@ export default function EnergySliders() {
       boxShadow: '4px 4px 0px 0px #212121',
       padding: '12px',
       width: '210px',
+      borderRadius: '10px',
       fontFamily: 'monospace',
       pointerEvents: 'auto',
+      color: '#212121',
+      backdropFilter: 'blur(8px)',
     }}>
       {/* Header */}
       <div style={{
         fontSize: '10px', fontWeight: 'bold', letterSpacing: '0.12em',
         color: '#212121', textTransform: 'uppercase', marginBottom: '12px',
         borderBottom: '2px solid #212121', paddingBottom: '6px',
+        display: 'flex', alignItems: 'center', gap: '6px',
       }}>
-        ⚡ SUPPLY CONTROLS
+        <span style={{ color: '#FF6600' }}>⚡</span>
+        SUPPLY CONTROLS
       </div>
 
       {/* Sliders */}
@@ -115,7 +120,7 @@ export default function EnergySliders() {
                 border: '1px solid #212121',
                 outline: 'none',
                 cursor: 'pointer',
-                borderRadius: '0',
+                borderRadius: '10px',
               }}
             />
           </div>
@@ -131,6 +136,7 @@ export default function EnergySliders() {
           width: '7px', height: '7px', borderRadius: '50%',
           background: backendConnected ? '#28A745' : '#DC2626',
           flexShrink: 0,
+          boxShadow: backendConnected ? '0 0 0 2px rgba(40, 167, 73, 0.2)' : 'none',
         }} />
         <span style={{ fontSize: '8px', color: '#6B7280', letterSpacing: '0.08em', textTransform: 'uppercase' }}>
           {backendConnected ? 'BACKEND LIVE' : 'MOCK MODE'}

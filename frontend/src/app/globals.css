@@ -12,11 +12,29 @@
   --font-mono: var(--font-geist-mono);
 }
 
+* {
+  box-sizing: border-box;
+}
+
 body {
-  background: #0b0f19;
+  background:
+    radial-gradient(circle at 70% 20%, rgba(255, 102, 0, 0.08), transparent 20%),
+    radial-gradient(circle at 20% 85%, rgba(40, 167, 73, 0.06), transparent 18%),
+    #0b0f19;
   color: #f8fafc;
-  font-family: var(--font-geist-sans), sans-serif;
+  font-family: var(--font-geist-sans), "Inter", "Segoe UI", Arial, sans-serif;
   overflow-x: hidden;
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background-image: radial-gradient(#304157 1px, transparent 1px);
+  background-size: 36px 36px;
+  mask-image: linear-gradient(to bottom, #000, transparent 100%);
+  opacity: 0.25;
 }
 
 /* Custom transitions and helper classes */

@@ -44,28 +44,35 @@ export default function ResiliencePanel() {
         margin: '12px 0',
         border: '2px solid #212121',
         background: '#FFFFFF',
+        borderRadius: '8px',
+        boxShadow: '0 12px 24px rgba(0, 0, 0, 0.12)',
+        overflow: 'hidden',
       }}
     >
       <div
         style={{
-          background: '#212121',
+          background: '#121722',
           color: '#FFFFFF',
-          padding: '10px 14px',
+          padding: '11px 16px',
           fontFamily: 'monospace',
           fontSize: '11px',
           fontWeight: 900,
           letterSpacing: '0.1em',
+          borderBottom: '2px solid #FF6600',
+          display: 'flex', alignItems: 'center', gap: '8px',
         }}
       >
+        <span style={{ color: '#FF6600', fontSize: '12px' }}>✦</span>
         GRIDSWARM / AUTONOMOUS RESILIENCE
       </div>
 
       <div
         style={{
           display: 'grid',
-          gridTemplateColumns: '1fr 1fr 1fr',
+          gridTemplateColumns: 'repeat(3, minmax(120px, 1fr))',
           gap: '8px',
           padding: '12px',
+          background: 'linear-gradient(180deg, #eef1ee 0%, #eef2f4 100%)',
         }}
       >
         <Metric label="FAILURE RISK" value={`${risk}%`} sub={riskLabel} />
@@ -84,9 +91,10 @@ export default function ResiliencePanel() {
       <div
         style={{
           borderTop: '1px solid #D1D5DB',
-          padding: '10px 14px',
+          padding: '12px 16px',
           fontFamily: 'monospace',
           fontSize: '10px',
+          background: '#FCFCFB',
         }}
       >
         <div
@@ -94,6 +102,7 @@ export default function ResiliencePanel() {
             fontWeight: 900,
             marginBottom: '7px',
             textTransform: 'uppercase',
+            color: '#212121',
           }}
         >
           Autonomous actions
@@ -107,6 +116,7 @@ export default function ResiliencePanel() {
               color: '#374151',
               display: 'flex',
               gap: '7px',
+              alignItems: 'center',
             }}
           >
             <span style={{ color: '#FF6600', fontWeight: 900 }}>›</span>
@@ -131,7 +141,10 @@ function Metric({
     <div
       style={{
         border: '1px solid #D1D5DB',
+        borderRadius: '6px',
         padding: '9px',
+        background: '#FFFFFF',
+        boxShadow: '0 2px 0 rgba(0,0,0,0.1)',
       }}
     >
       <div
@@ -140,6 +153,7 @@ function Metric({
           color: '#6B7280',
           fontWeight: 900,
           marginBottom: '4px',
+          letterSpacing: '0.1em',
         }}
       >
         {label}
@@ -150,6 +164,7 @@ function Metric({
           fontSize: '22px',
           fontWeight: 900,
           lineHeight: 1,
+          color: '#212121',
         }}
       >
         {value}
