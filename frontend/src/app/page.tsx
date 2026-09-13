@@ -355,10 +355,10 @@ export default function Home() {
         }}>
           <div>
             <div style={{ color: '#FF6600', fontSize: '10px', fontFamily: 'monospace', letterSpacing: '0.15em', fontWeight: 'bold' }}>
-              GRIDSWARM / MULTI-AGENT ENERGY OS
+              FlowState / MULTI-AGENT ENERGY OS
             </div>
             <div style={{ color: '#FFFFFF', fontSize: '20px', fontWeight: '900', letterSpacing: '-0.02em' }}>
-              {inspectedHouse ? `HOUSE H-${houseNumber} TELEMETRY` : 'GRIDSWARM RESILIENCE TWIN'}
+              {inspectedHouse ? `HOUSE H-${houseNumber} TELEMETRY` : 'FlowState RESILIENCE TWIN'}
             </div>
           </div>
           <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
@@ -801,7 +801,7 @@ export default function Home() {
             fontFamily: 'monospace', fontSize: '9px',
             color: '#6B7280', letterSpacing: '0.1em',
           }}>
-            AGENTGRID OPERATION CONSOLE v1.0.0
+              FlowState OPERATION CONSOLE v1.0.0
           </span>
           <div style={{ display: 'flex', gap: '12px', alignItems: 'center' }}>
             <span style={{ fontFamily: 'monospace', fontSize: '9px', color: backendConnected ? '#28A745' : '#6B7280', fontWeight: 'bold' }}>

@@ -13,7 +13,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "AGENTGRID | 3D Digital Twin",
+  title: "FlowState | 3D Digital Twin",
   description: "Autonomous Multi-Agent Energy Operating System for Residential Communities",
 };
 

@@ -63,7 +63,7 @@ export default function ResiliencePanel() {
         }}
       >
         <span style={{ color: '#FF6600', fontSize: '12px' }}>✦</span>
-        GRIDSWARM / AUTONOMOUS RESILIENCE
+        FlowState / AUTONOMOUS RESILIENCE
       </div>
 
       <div

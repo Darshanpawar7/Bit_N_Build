@@ -1,6 +1,6 @@
 """
 run.py
-Public entrypoint for the AGENTGRID multi-agent system, plus mock data
+Public entrypoint for the FlowState multi-agent system, plus mock data
 generators for testing and demo purposes.
 
 Exposes:
@@ -18,7 +18,8 @@ from agents.graph import app
 from agents.scenarios import inject_scenario  # re-export for FastAPI consumers
 from agents.logger import clear_logs
 
-__all__ = ["run_cycle", "run_cycle_full", "inject_scenario", "generate_mock_community_state"]
+__all__ = ["run_cycle", "run_cycle_full",
+           "inject_scenario", "generate_mock_community_state"]
 
 
 def run_cycle(state_dict: dict) -> dict:
@@ -57,7 +58,8 @@ def generate_mock_community_state(seed: int = 42) -> CommunityState:
 
     # --- Solar ---
     current_generation = round(rng.uniform(150.0, 400.0), 2)
-    forecast_24h = [round(max(0.0, rng.gauss(current_generation * 0.8, 60.0)), 2) for _ in range(24)]
+    forecast_24h = [
+        round(max(0.0, rng.gauss(current_generation * 0.8, 60.0)), 2) for _ in range(24)]
 
     solar = {
         "current_generation": current_generation,
@@ -77,14 +79,16 @@ def generate_mock_community_state(seed: int = 42) -> CommunityState:
 
     # --- Households (50) ---
     priorities = ["critical", "normal", "flexible"]
-    priority_weights = [0.15, 0.55, 0.30]  # 15% critical, 55% normal, 30% flexible
+    # 15% critical, 55% normal, 30% flexible
+    priority_weights = [0.15, 0.55, 0.30]
 
     households = []
     for i in range(50):
         priority = rng.choices(priorities, weights=priority_weights, k=1)[0]
         current_demand = round(rng.uniform(0.8, 5.5), 2)
         forecast_demand = round(max(0.0, rng.gauss(current_demand, 0.5)), 2)
-        flexibility = round(rng.uniform(0.0, 0.2), 2) if priority != "flexible" else round(rng.uniform(0.3, 0.9), 2)
+        flexibility = round(rng.uniform(
+            0.0, 0.2), 2) if priority != "flexible" else round(rng.uniform(0.3, 0.9), 2)
 
         households.append({
             "house_id": f"H{i:02d}",

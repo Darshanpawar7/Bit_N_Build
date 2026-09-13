@@ -1,6 +1,6 @@
 """
 state.py
-Shared state schema for AGENTGRID multi-agent system.
+Shared state schema for FlowState multi-agent system.
 All agents read/write a single CommunityState object that flows
 through the LangGraph sequentially.
 
@@ -14,7 +14,8 @@ class SolarState(TypedDict):
     current_generation: float       # kWh right now
     forecast_24h: List[float]        # hourly forecast (next 24h)
     surplus_now: float               # generation - current total demand
-    low_gen_windows: List[str]       # ISO timestamps / hour labels of low generation
+    # ISO timestamps / hour labels of low generation
+    low_gen_windows: List[str]
 
 
 class BatteryState(TypedDict):

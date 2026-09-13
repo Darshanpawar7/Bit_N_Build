@@ -1,5 +1,5 @@
 """
-GridSwarm resilience agent.
+FlowState resilience agent.
 
 Adds:
 - deterministic grid failure risk estimation
