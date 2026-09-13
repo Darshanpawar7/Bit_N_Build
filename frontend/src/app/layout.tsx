@@ -13,7 +13,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "FlowState | 3D Digital Twin",
+  title: "Bit-N-Build | FlowState Digital Twin",
   description: "Autonomous Multi-Agent Energy Operating System for Residential Communities",
 };
 
