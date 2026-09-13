@@ -1,6 +1,14 @@
-# ⚡ FlowState ⚡
+# ⚡ Bit-N-Build | FlowState ⚡
 
 **An autonomous multi-agent microgrid resilience system for predicting grid stress, coordinating local energy exchange, and protecting communities during peak demand.**
+
+## 🚀 Live Demo
+
+**[bit-n-build-wine.vercel.app](https://bit-n-build-wine.vercel.app/)**
+
+Open the link to explore the FlowState digital twin in the browser. Drag to rotate the
+3D community, click any house for its energy telemetry, and use the scenario simulator
+to trigger cloud cover, a heatwave, a grid outage, an EV surge or peak demand.
 
 ## 📌 Ownership
 
@@ -212,10 +220,14 @@ npm run dev
 
 Visit `http://localhost:3000` to open the FlowState digital twin.
 
+A hosted build of the frontend is already live at
+**[bit-n-build-wine.vercel.app](https://bit-n-build-wine.vercel.app/)**. It runs in mock
+mode, so the steps above are only needed to exercise the Python agent backend.
+
 ## 👥 Team
 
-**Bit N Build — FlowState**
+**Bit-N-Build — FlowState**
 
 Prithvi S P | Darshan Pawar | Chandan Kumar K |
 
-Designed and built entirely by the **FlowState** team for the **Bit-N-Build** Hackathon.
+Designed and built entirely by the **Bit-N-Build** team for the **Bit-N-Build** Hackathon.
