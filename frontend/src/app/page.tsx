@@ -3,6 +3,7 @@
 import { useEnergyStore } from '../store/useEnergyStore';
 import CommunityScene from '../components/digitalTwin/CommunityScene';
 import { ScenarioControls } from '../components/dashboard/ScenarioControls';
+import ResiliencePanel from '../components/dashboard/ResiliencePanel';
 import {
   AreaChart,
   Area,
@@ -354,10 +355,10 @@ export default function Home() {
         }}>
           <div>
             <div style={{ color: '#FF6600', fontSize: '10px', fontFamily: 'monospace', letterSpacing: '0.15em', fontWeight: 'bold' }}>
-              MULTI-AGENT ENERGY OS
+              GRIDSWARM / MULTI-AGENT ENERGY OS
             </div>
             <div style={{ color: '#FFFFFF', fontSize: '20px', fontWeight: '900', letterSpacing: '-0.02em' }}>
-              {inspectedHouse ? `HOUSE H-${houseNumber} TELEMETRY` : 'AGENTGRID TWIN'}
+              {inspectedHouse ? `HOUSE H-${houseNumber} TELEMETRY` : 'GRIDSWARM RESILIENCE TWIN'}
             </div>
           </div>
           <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
@@ -399,6 +400,8 @@ export default function Home() {
             </div>
           </div>
         </div>
+
+        <ResiliencePanel />
 
           <AnimatePresence mode="wait">
             {!inspectedHouse ? (
