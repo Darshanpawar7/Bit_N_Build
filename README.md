@@ -214,8 +214,8 @@ Visit `http://localhost:3000` to open the FlowState digital twin.
 
 ## 👥 Team
 
-**Bit-N-Build — FlowState**
+**Bit N Build — FlowState**
 
-| Prithvi S P | Darshan Pawar | Chandan Kumar K |
+Prithvi S P | Darshan Pawar | Chandan Kumar K |
 
-Designed and built entirely by the **Bit-N-Build** team for the **Bit-N-Build** Hackathon.
+Designed and built entirely by the **FlowState** team for the **Bit-N-Build** Hackathon.
