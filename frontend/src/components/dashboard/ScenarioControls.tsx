@@ -8,6 +8,7 @@ const SCENARIOS = [
   { id: 'heatwave',    label: 'HEATWAVE',  icon: '🔥',  accent: '#FF6600' },
   { id: 'gridFailure', label: 'OUTAGE',    icon: '⚡',  accent: '#DC2626' },
   { id: 'evSurge',     label: 'EV SURGE',  icon: '🚗',  accent: '#FFC107' },
+  { id: 'peakDemand',  label: 'PEAK DEMAND', icon: '⚡', accent: '#7C3AED' },
 ] as const;
 
 interface ScenarioControlsProps {
@@ -37,8 +38,8 @@ export function ScenarioControls({ activeScenario, onScenarioChange }: ScenarioC
         ▸ SCENARIO SIMULATOR
       </p>
 
-      {/* 5 scenario buttons in a row */}
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(5, 1fr)', gap: '8px' }}>
+      {/* Scenario buttons in a row */}
+      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(6, 1fr)', gap: '8px' }}>
         {SCENARIOS.map((s) => {
           const isActive = activeScenario === s.id;
           return (

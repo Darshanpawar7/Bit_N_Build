@@ -61,6 +61,14 @@ export default function ScenarioEffects() {
       sunColor:   new THREE.Color('#FFE082'),
       sunIntensity: 0.9,
     },
+    peakDemand: {
+      background: new THREE.Color('#E0D8E4'),
+      fogColor:   new THREE.Color('#E0D8E4'),
+      fogDensity: 0.008,
+      ambientIntensity: 0.8,
+      sunColor:   new THREE.Color('#D8B4FE'),
+      sunIntensity: 0.7,
+    },
   }), []);
 
   const gridHealthy = activeScenario !== 'gridFailure';

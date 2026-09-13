@@ -120,7 +120,8 @@ def optimizer_fn(state: CommunityState) -> CommunityState:
 
     # Renewable utilization: portion of total demand met by solar generation.
     renewable_pct = (
-        (solar["current_generation"] / total_demand) * 100 if total_demand > 0 else 0.0
+        (solar["current_generation"] / total_demand) *
+        100 if total_demand > 0 else 0.0
     )
     renewable_pct = max(0.0, min(100.0, renewable_pct))
 
@@ -139,6 +140,9 @@ def optimizer_fn(state: CommunityState) -> CommunityState:
         "carbon_saved_kg": round(carbon_saved, 2),
         "grid_import_kw": round(final_grid_import, 3),
     }
+
+    if "resilience" in state["decisions"]:
+        decisions["resilience"] = state["decisions"]["resilience"]
 
     state["decisions"] = decisions
 

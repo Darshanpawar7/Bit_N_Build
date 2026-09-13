@@ -1,7 +1,7 @@
 import { create } from 'zustand';
 import { generateHouses, scenarioData } from '../data/mockData';
 
-export type ActiveScenario = 'normal' | 'cloudCover' | 'heatwave' | 'gridFailure' | 'evSurge';
+export type ActiveScenario = 'normal' | 'cloudCover' | 'heatwave' | 'gridFailure' | 'evSurge' | 'peakDemand';
 export type WsStatus = 'idle' | 'connecting' | 'negotiating' | 'done' | 'error';
 
 export interface House {
@@ -84,6 +84,7 @@ const SCENARIO_BACKEND_MAP: Record<string, string | null> = {
   heatwave:    'heatwave',
   gridFailure: 'grid_failure',
   evSurge:     'ev_surge',
+  peakDemand:  'peak_demand',
 };
 
 const SCENARIO_METRICS = scenarioData;

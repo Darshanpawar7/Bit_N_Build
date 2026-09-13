@@ -119,6 +119,12 @@ export default function EnergyFlow() {
       batteryToHouses: { active: true,  thickness: 0.12, speed: 0.025, color: '#28A745' },
       gridToHouses:    { active: true,  thickness: 0.18, speed: 0.042, color: '#DC2626' },
     },
+    peakDemand: {
+      solarToHouses:   { active: true,  thickness: 0.14, speed: 0.028, color: '#FF6600' },
+      solarToBattery:  { active: false, thickness: 0.06, speed: 0.015, color: '#FFC107' },
+      batteryToHouses: { active: true,  thickness: 0.12, speed: 0.025, color: '#28A745' },
+      gridToHouses:    { active: true,  thickness: 0.18, speed: 0.040, color: '#DC2626' },
+    },
   }), []);
 
   const currentConfig = flowConfig[activeScenario] || flowConfig.normal;

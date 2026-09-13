@@ -21,6 +21,7 @@ SCENARIO_MAP: dict[str, str | None] = {
     "heatwave":    "heatwave",
     "gridFailure": "grid_failure",
     "evSurge":     "ev_surge",
+    "peakDemand":  "peak_demand",
 }
 
 # Which agent node maps to which display name
@@ -33,12 +34,14 @@ AGENT_DISPLAY_NAMES: dict[str, str] = {
     "optimizer":     "Optimizer",
 }
 
+
 class SimulateRequest(BaseModel):
     scenario: str = "normal"
     seed: int = 42
     solar_pct: float = 100.0    # 0-100, scales solar current_generation
     battery_pct: float = 100.0  # 0-100, scales battery soc
     grid_pct: float = 100.0     # 0-100, scales grid max_import_kw
+
 
 def _build_state(
     scenario_frontend: str,
@@ -68,14 +71,15 @@ def _build_state(
     )
     return state
 
+
 def _map_to_frontend_metrics(state: dict, decisions: dict) -> dict:
     """Convert backend state + decisions to frontend CommunityMetrics shape."""
-    solar   = state.get("solar",   {})
+    solar = state.get("solar",   {})
     battery = state.get("battery", {})
-    evs     = state.get("evs",     [])
+    evs = state.get("evs",     [])
 
-    paused_ids   = set(decisions.get("ev_charging_paused", []))
-    active_evs   = sum(
+    paused_ids = set(decisions.get("ev_charging_paused", []))
+    active_evs = sum(
         1 for ev in evs
         if ev.get("currently_charging") and ev.get("ev_id") not in paused_ids
     )
@@ -89,6 +93,7 @@ def _map_to_frontend_metrics(state: dict, decisions: dict) -> dict:
         "carbonReduced":   round(decisions.get("carbon_saved_kg", 0), 1),
         "renewableUsage":  round(decisions.get("renewable_utilization_pct", 0), 1),
     }
+
 
 @router.post("/simulate")
 async def simulate(req: SimulateRequest):
@@ -106,6 +111,7 @@ async def simulate(req: SimulateRequest):
         "logs":              result.get("logs", []),
         "scenario":          req.scenario,
     }
+
 
 @router.websocket("/ws/negotiate")
 async def negotiate_websocket(websocket: WebSocket):
