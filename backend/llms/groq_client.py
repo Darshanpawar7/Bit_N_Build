@@ -1,4 +1,4 @@
-"""Groq LLM client for AGENTGRID.
+"""Groq LLM client for FlowState.
 
 Groq llama-3.1-8b-instant is the main reasoning brain.  It powers
 conversational chat, savings-plan generation, tool calling, and
@@ -22,7 +22,7 @@ logger = logging.getLogger(__name__)
 
 
 class GroqClient:
-    """Groq llama-3.1-8b-instant client for AGENTGRID reasoning.
+    """Groq llama-3.1-8b-instant client for FlowState reasoning.
 
     Features:
     - Async-safe via ``asyncio.to_thread`` (no event-loop blocking).
@@ -42,8 +42,10 @@ class GroqClient:
         if api_key_env == "your_groq_api_key_here":
             api_key_env = ""
         self.api_key = api_key or api_key_env
-        self._mock_mode = not bool(self.api_key) or "your_" in self.api_key or Groq is None
-        self._client = Groq(api_key=self.api_key) if not self._mock_mode else None
+        self._mock_mode = not bool(
+            self.api_key) or "your_" in self.api_key or Groq is None
+        self._client = Groq(
+            api_key=self.api_key) if not self._mock_mode else None
 
     # ------------------------------------------------------------------
     # Public API
@@ -90,12 +92,14 @@ class GroqClient:
 
         try:
             if tools and response_format:
-                logger.info("Skipping Groq response_format because tool calling is enabled")
+                logger.info(
+                    "Skipping Groq response_format because tool calling is enabled")
                 response_format = None
 
             chat_messages: list[dict[str, str]] = []
             if system_prompt:
-                chat_messages.append({"role": "system", "content": system_prompt})
+                chat_messages.append(
+                    {"role": "system", "content": system_prompt})
             chat_messages.extend(messages)
 
             kwargs: dict[str, Any] = {
@@ -188,7 +192,8 @@ class GroqClient:
         try:
             chat_messages: list[dict[str, str]] = []
             if system_prompt:
-                chat_messages.append({"role": "system", "content": system_prompt})
+                chat_messages.append(
+                    {"role": "system", "content": system_prompt})
             chat_messages.extend(messages)
 
             stream = await asyncio.to_thread(
@@ -375,7 +380,8 @@ class GroqClient:
     ) -> dict[str, Any]:
         """Return a deterministic mock reply when Groq is unavailable."""
         last_user = next(
-            (m["content"] for m in reversed(messages) if m.get("role") == "user"),
+            (m["content"]
+             for m in reversed(messages) if m.get("role") == "user"),
             "Hello",
         )
         lowered = last_user.lower()

@@ -57,7 +57,7 @@ export default function ResiliencePanel() {
           letterSpacing: '0.1em',
         }}
       >
-        GRIDSWARM / AUTONOMOUS RESILIENCE
+        FlowState / AUTONOMOUS RESILIENCE
       </div>
 
       <div

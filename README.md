@@ -1,12 +1,12 @@
-# ⚡ GRIDSWARM ⚡
+# ⚡ FlowState ⚡
 
 **An autonomous multi-agent microgrid resilience system for predicting grid stress, coordinating local energy exchange, and protecting communities during peak demand.**
 
 ## 📌 Attribution & Project Evolution
 
-GridSwarm was developed by extending the publicly available **AGENTGRID** project.
+FlowState was developed by extending the publicly available **FlowState** project.
 
-The original AGENTGRID project provided the initial multi-agent energy architecture, simulation environment, digital-twin interface, and energy optimization components.
+The original FlowState project provided the initial multi-agent energy architecture, simulation environment, digital-twin interface, and energy optimization components.
 
 ### Our Contributions
 
@@ -16,7 +16,7 @@ Our team extended that foundation with:
 - **P2P energy coordination** for local energy matching
 - **Peak-demand scenario** for grid stress simulation
 - **Autonomous recovery planning**
-- **GridSwarm resilience visualization**
+- **FlowState resilience visualization**
 - integration of resilience decisions into the existing agent pipeline
 
 The original project's attribution and licensing requirements are retained where applicable.
@@ -31,7 +31,7 @@ Create agent networks that monitor hyper-local power generation, predict grid fa
 
 ### Our Approach
 
-GridSwarm extends a multi-agent microgrid foundation with an autonomous resilience layer that:
+FlowState extends a multi-agent microgrid foundation with an autonomous resilience layer that:
 
 - detects grid stress and estimates failure risk
 - identifies available local energy
@@ -43,7 +43,7 @@ GridSwarm extends a multi-agent microgrid foundation with an autonomous resilien
 
 Traditional microgrids often react to instability after it occurs.
 
-**GridSwarm takes a proactive approach.**
+**FlowState takes a proactive approach.**
 
 Multiple specialized agents continuously evaluate generation, consumption, storage, EV demand, and grid conditions. When the system detects rising instability, it coordinates local energy resources before a failure propagates.
 
@@ -53,7 +53,7 @@ The goal is simple:
 
 ## 🤖 Autonomous Resilience Layer
 
-GridSwarm introduces a new resilience layer into the existing agent pipeline.
+FlowState introduces a new resilience layer into the existing agent pipeline.
 
 ### Resilience Agent
 
@@ -89,7 +89,7 @@ HOUSE H07
 
 ### Autonomous Recovery
 
-During high-risk conditions, GridSwarm can recommend:
+During high-risk conditions, FlowState can recommend:
 
 - local P2P energy transfer
 - battery reserve activation
@@ -97,7 +97,7 @@ During high-risk conditions, GridSwarm can recommend:
 - flexible load shifting
 - island-mode operation during grid outages
 
-## 🧠 GridSwarm Architecture
+## 🧠 FlowState Architecture
 
 ```text
              Community State
@@ -139,7 +139,7 @@ During high-risk conditions, GridSwarm can recommend:
 
 ## ⚡ Demo Scenario: Peak Demand
 
-GridSwarm can simulate a sudden community-wide demand spike.
+FlowState can simulate a sudden community-wide demand spike.
 
 ### Step 1 — Detect
 
@@ -223,7 +223,7 @@ npm install
 npm run dev
 ```
 
-Visit `http://localhost:3000` to open the GridSwarm digital twin.
+Visit `http://localhost:3000` to open the FlowState digital twin.
 
 ## 👥 Team
 

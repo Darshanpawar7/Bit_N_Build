@@ -14,7 +14,7 @@ router = APIRouter(prefix="/chat", tags=["chat"])
 _groq = GroqClient()
 _sarvam = SarvamClient()
 
-SYSTEM_PROMPT_TEMPLATE = """You are ARIA, the AI energy advisor for AGENTGRID — an autonomous multi-agent energy management system for a 50-home residential community in India.
+SYSTEM_PROMPT_TEMPLATE = """You are ARIA, the AI energy advisor for FlowState — an autonomous multi-agent energy management system for a 50-home residential community in India.
 
 Current community status:
 - Solar Generation: {solar_generation} kWh
@@ -38,9 +38,11 @@ Rules:
 - If asked about savings, give specific rupee estimates when possible
 - You can understand and respond in English, Hindi, Telugu, and Urdu"""
 
+
 class ChatMessage(BaseModel):
     role: str   # "user" | "assistant"
     content: str
+
 
 class HouseContext(BaseModel):
     house_id: str = ""
@@ -51,14 +53,16 @@ class HouseContext(BaseModel):
     battery_supply_kwh: float = 0.0
     grid_supply_kwh: float = 0.0
 
+
 class CommunityContext(BaseModel):
     solarGeneration: float = 280
     batteryLevel:    float = 68
     gridImport:      float = 42
-    evCount:         int   = 7
+    evCount:         int = 7
     renewableUsage:  float = 85
-    activeScenario:  str   = "normal"
+    activeScenario:  str = "normal"
     selectedHouse:   Optional[HouseContext] = None
+
 
 class ChatRequest(BaseModel):
     message:  str
@@ -66,17 +70,18 @@ class ChatRequest(BaseModel):
     history:  list[ChatMessage] = []
     context:  Optional[CommunityContext] = None
 
+
 @router.post("")
 async def chat(req: ChatRequest):
     ctx = req.context or CommunityContext()
     user_lang = req.language.lower().strip()
-    
+
     # 1. Translate user message to English if it's not English
     english_message = req.message
     if user_lang != "english":
         translation_res = await _sarvam.translate(req.message, source_lang=user_lang, target_lang="english")
         english_message = translation_res.get("translated_text", req.message)
-        
+
     # 2. Translate chat history to English if needed
     translated_history = []
     for msg in req.history:
@@ -98,37 +103,39 @@ Currently selected house: {h.house_id}
 - Grid supplying: {h.grid_supply_kwh:.2f} kWh
 """
     system_prompt = SYSTEM_PROMPT_TEMPLATE.format(
-        solar_generation = ctx.solarGeneration,
-        battery_level    = ctx.batteryLevel,
-        grid_import      = ctx.gridImport,
-        ev_count         = ctx.evCount,
-        renewable_usage  = ctx.renewableUsage,
-        active_scenario  = ctx.activeScenario,
-        house_section    = house_section,
+        solar_generation=ctx.solarGeneration,
+        battery_level=ctx.batteryLevel,
+        grid_import=ctx.gridImport,
+        ev_count=ctx.evCount,
+        renewable_usage=ctx.renewableUsage,
+        active_scenario=ctx.activeScenario,
+        house_section=house_section,
     )
-    
-    messages = translated_history + [{"role": "user", "content": english_message}]
-    
+
+    messages = translated_history + \
+        [{"role": "user", "content": english_message}]
+
     result = await _groq.chat(
-        messages      = messages,
-        system_prompt = system_prompt,
-        tools         = GroqClient.get_energy_tools(),
-        temperature   = 0.7,
-        max_tokens    = 512,
+        messages=messages,
+        system_prompt=system_prompt,
+        tools=GroqClient.get_energy_tools(),
+        temperature=0.7,
+        max_tokens=512,
     )
-    
+
     raw_reply = result.get("reply", "")
     structured = result.get("structured")
-    
+
     # 3. Translate response back to the user's language if it's not English
     final_reply = raw_reply
     if user_lang != "english" and raw_reply:
         trans_reply = await _sarvam.translate(raw_reply, source_lang="english", target_lang=user_lang)
         final_reply = trans_reply.get("translated_text", raw_reply)
-        
+
     if user_lang != "english" and structured and "message" in structured:
         trans_struct = await _sarvam.translate(structured["message"], source_lang="english", target_lang=user_lang)
-        structured["message"] = trans_struct.get("translated_text", structured["message"])
+        structured["message"] = trans_struct.get(
+            "translated_text", structured["message"])
 
     return {
         "reply":      final_reply,

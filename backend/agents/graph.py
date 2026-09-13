@@ -1,6 +1,6 @@
 """
 graph.py
-LangGraph graph topology for AGENTGRID multi-agent system.
+LangGraph graph topology for FlowState multi-agent system.
 
 Sequential, deterministic flow (no branching, no subgraphs, no dynamic
 routing):
@@ -21,7 +21,7 @@ from agents.optimizer import optimizer_fn
 
 
 def build_graph():
-    """Construct and compile the AGENTGRID LangGraph state graph."""
+    """Construct and compile the FlowState LangGraph state graph."""
     graph = StateGraph(CommunityState)
 
     # Register nodes
