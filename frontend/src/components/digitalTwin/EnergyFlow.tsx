@@ -86,6 +86,12 @@ export default function EnergyFlow() {
       new THREE.Vector3(0, 3, 14),
       new THREE.Vector3(0, 2, 0),
     ]),
+    p2pHouseFlow: new THREE.CatmullRomCurve3([
+      new THREE.Vector3(-10, 3, -2),
+      new THREE.Vector3(-5, 6, 0),
+      new THREE.Vector3(5, 6, 2),
+      new THREE.Vector3(10, 3, 2),
+    ]),
   }), []);
 
   const flowConfig = useMemo(() => ({
@@ -94,36 +100,42 @@ export default function EnergyFlow() {
       solarToBattery:  { active: true,  thickness: 0.07, speed: 0.018, color: '#FFC107' }, // NEO_AMBER
       batteryToHouses: { active: false, thickness: 0.06, speed: 0.015, color: '#28A745' }, // NEO_GREEN
       gridToHouses:    { active: false, thickness: 0.06, speed: 0.012, color: '#DC2626' }, // NEO_RED
+      p2pHouseFlow:    { active: false, thickness: 0.05, speed: 0.035, color: '#8B5CF6' },
     },
     cloudCover: {
       solarToHouses:   { active: true,  thickness: 0.05, speed: 0.008, color: '#FF6600' },
       solarToBattery:  { active: false, thickness: 0.06, speed: 0.015, color: '#FFC107' },
       batteryToHouses: { active: true,  thickness: 0.15, speed: 0.030, color: '#28A745' },
       gridToHouses:    { active: true,  thickness: 0.10, speed: 0.022, color: '#DC2626' },
+      p2pHouseFlow:    { active: false, thickness: 0.05, speed: 0.035, color: '#8B5CF6' },
     },
     heatwave: {
       solarToHouses:   { active: true,  thickness: 0.14, speed: 0.028, color: '#FF6600' },
       solarToBattery:  { active: false, thickness: 0.06, speed: 0.015, color: '#FFC107' },
       batteryToHouses: { active: true,  thickness: 0.10, speed: 0.022, color: '#28A745' },
       gridToHouses:    { active: true,  thickness: 0.18, speed: 0.040, color: '#DC2626' },
+      p2pHouseFlow:    { active: false, thickness: 0.05, speed: 0.035, color: '#8B5CF6' },
     },
     gridFailure: {
       solarToHouses:   { active: true,  thickness: 0.12, speed: 0.025, color: '#FF6600' },
       solarToBattery:  { active: true,  thickness: 0.10, speed: 0.020, color: '#FFC107' },
       batteryToHouses: { active: true,  thickness: 0.18, speed: 0.035, color: '#28A745' },
       gridToHouses:    { active: false, thickness: 0.00, speed: 0.000, color: '#DC2626' },
+      p2pHouseFlow:    { active: false, thickness: 0.05, speed: 0.035, color: '#8B5CF6' },
     },
     evSurge: {
       solarToHouses:   { active: true,  thickness: 0.08, speed: 0.020, color: '#FF6600' },
       solarToBattery:  { active: false, thickness: 0.06, speed: 0.015, color: '#FFC107' },
       batteryToHouses: { active: true,  thickness: 0.12, speed: 0.025, color: '#28A745' },
       gridToHouses:    { active: true,  thickness: 0.18, speed: 0.042, color: '#DC2626' },
+      p2pHouseFlow:    { active: false, thickness: 0.05, speed: 0.035, color: '#8B5CF6' },
     },
     peakDemand: {
       solarToHouses:   { active: true,  thickness: 0.14, speed: 0.028, color: '#FF6600' },
       solarToBattery:  { active: false, thickness: 0.06, speed: 0.015, color: '#FFC107' },
       batteryToHouses: { active: true,  thickness: 0.12, speed: 0.025, color: '#28A745' },
       gridToHouses:    { active: true,  thickness: 0.18, speed: 0.040, color: '#DC2626' },
+      p2pHouseFlow:    { active: true, thickness: 0.11, speed: 0.045, color: '#8B5CF6' },
     },
   }), []);
 
@@ -135,6 +147,10 @@ export default function EnergyFlow() {
       <FlowTube curve={curves.solarToBattery} {...currentConfig.solarToBattery} />
       <FlowTube curve={curves.batteryToHouses} {...currentConfig.batteryToHouses} />
       <FlowTube curve={curves.gridToHouses} {...currentConfig.gridToHouses} />
+      <FlowTube
+        curve={curves.p2pHouseFlow}
+        {...currentConfig.p2pHouseFlow}
+      />
     </group>
   );
 }

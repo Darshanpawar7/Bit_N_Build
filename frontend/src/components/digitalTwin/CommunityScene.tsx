@@ -68,6 +68,29 @@ export default function CommunityScene() {
         />
       </Canvas>
 
+      <div
+        style={{
+          position: 'absolute',
+          top: '16px',
+          right: '16px',
+          zIndex: 10,
+          background: '#FFFFFF',
+          border: '2px solid #212121',
+          padding: '8px 10px',
+          fontFamily: 'monospace',
+          fontSize: '9px',
+          fontWeight: 'bold',
+          color: '#212121',
+          boxShadow: '3px 3px 0 #212121',
+        }}
+      >
+        <div style={{ marginBottom: '5px' }}>ENERGY FLOWS</div>
+        <div>🟠 SOLAR</div>
+        <div>🟢 BATTERY</div>
+        <div>🔴 GRID</div>
+        <div style={{ color: '#8B5CF6' }}>🟣 P2P TRADE</div>
+      </div>
+
       {/* Floating Camera Help Tip Overlay - Neo-Brutalist Reskinned */}
       <div style={{
         position: 'absolute',
