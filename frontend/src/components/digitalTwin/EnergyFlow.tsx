@@ -61,6 +61,7 @@ function FlowTube({ curve, color, thickness, speed, active }: FlowTubeProps) {
 
 export default function EnergyFlow() {
   const activeScenario = useEnergyStore((state) => state.activeScenario);
+  const p2pSlider = useEnergyStore((state) => state.p2pSlider);
 
   // Curves exactly as requested in specifications
   const curves = useMemo(() => ({
@@ -140,6 +141,11 @@ export default function EnergyFlow() {
   }), []);
 
   const currentConfig = flowConfig[activeScenario] || flowConfig.normal;
+  const p2pFlow = {
+    ...currentConfig.p2pHouseFlow,
+    thickness: currentConfig.p2pHouseFlow.thickness * (p2pSlider / 100),
+    active: currentConfig.p2pHouseFlow.active && p2pSlider > 0,
+  };
 
   return (
     <group>
@@ -149,7 +155,7 @@ export default function EnergyFlow() {
       <FlowTube curve={curves.gridToHouses} {...currentConfig.gridToHouses} />
       <FlowTube
         curve={curves.p2pHouseFlow}
-        {...currentConfig.p2pHouseFlow}
+        {...p2pFlow}
       />
     </group>
   );

@@ -6,48 +6,53 @@ const SLIDER_CONFIG = [
   { key: 'solar'   as const, label: 'SOLAR',   icon: '☀️', color: '#FF6600' },
   { key: 'battery' as const, label: 'BATTERY', icon: '🔋', color: '#28A745' },
   { key: 'grid'    as const, label: 'GRID',    icon: '⚡', color: '#DC2626' },
+  { key: 'p2p'     as const, label: 'P2P TRADE', icon: '🟣', color: '#8B5CF6' },
 ];
 
 export default function EnergySliders() {
   const solarSlider     = useEnergyStore((s) => s.solarSlider);
   const batterySlider   = useEnergyStore((s) => s.batterySlider);
   const gridSlider      = useEnergyStore((s) => s.gridSlider);
+  const p2pSlider       = useEnergyStore((s) => s.p2pSlider);
   const backendConnected = useEnergyStore((s) => s.backendConnected);
   const setSolarSlider   = useEnergyStore((s) => s.setSolarSlider);
   const setBatterySlider = useEnergyStore((s) => s.setBatterySlider);
   const setGridSlider    = useEnergyStore((s) => s.setGridSlider);
+  const setP2pSlider     = useEnergyStore((s) => s.setP2pSlider);
 
   // Track which sliders were auto-adjusted (show badge briefly)
-  const [autoFlags, setAutoFlags] = useState({ solar: false, battery: false, grid: false });
+  const [autoFlags, setAutoFlags] = useState({ solar: false, battery: false, grid: false, p2p: false });
 
-  const values = { solar: solarSlider, battery: batterySlider, grid: gridSlider };
-  const prevValues = useRef({ solar: solarSlider, battery: batterySlider, grid: gridSlider });
+  const values = { solar: solarSlider, battery: batterySlider, grid: gridSlider, p2p: p2pSlider };
+  const prevValues = useRef({ solar: solarSlider, battery: batterySlider, grid: gridSlider, p2p: p2pSlider });
 
   useEffect(() => {
     const newAuto = {
       solar:   values.solar   !== prevValues.current.solar,
       battery: values.battery !== prevValues.current.battery,
       grid:    values.grid    !== prevValues.current.grid,
+      p2p:     values.p2p     !== prevValues.current.p2p,
     };
     // Only flag ones that changed WITHOUT a direct user action
     // We detect indirect change by checking if the store update came from auto-compensation:
     // Simplified: flag any that changed
     if (newAuto.solar || newAuto.battery || newAuto.grid) {
       setAutoFlags(newAuto);
-      const t = setTimeout(() => setAutoFlags({ solar: false, battery: false, grid: false }), 2000);
+      const t = setTimeout(() => setAutoFlags({ solar: false, battery: false, grid: false, p2p: false }), 2000);
       prevValues.current = { ...values };
       return () => clearTimeout(t);
     }
     prevValues.current = { ...values };
-  }, [solarSlider, batterySlider, gridSlider]);
+  }, [solarSlider, batterySlider, gridSlider, p2pSlider]);
 
-  const handleChange = (key: 'solar' | 'battery' | 'grid', pct: number) => {
+  const handleChange = (key: 'solar' | 'battery' | 'grid' | 'p2p', pct: number) => {
     if (key === 'solar')   setSolarSlider(pct);
     if (key === 'battery') setBatterySlider(pct);
     if (key === 'grid')    setGridSlider(pct);
+    if (key === 'p2p')     setP2pSlider(pct);
   };
 
-  const sliderValues = { solar: solarSlider, battery: batterySlider, grid: gridSlider };
+  const sliderValues = { solar: solarSlider, battery: batterySlider, grid: gridSlider, p2p: p2pSlider };
 
   return (
     <div style={{

@@ -48,6 +48,7 @@ export interface EnergyStore {
   solarSlider: number;        // 0-100 (%)
   batterySlider: number;      // 0-100 (%)
   gridSlider: number;         // 0-100 (%)
+  p2pSlider: number;          // 0-100 (%) local transfer intensity
   backendConnected: boolean;
   negotiationStatus: 'idle' | 'connecting' | 'streaming' | 'done' | 'error';
   
@@ -68,6 +69,7 @@ export interface EnergyStore {
   setSolarSlider: (pct: number) => void;
   setBatterySlider: (pct: number) => void;
   setGridSlider: (pct: number) => void;
+  setP2pSlider: (pct: number) => void;
   setBackendConnected: (v: boolean) => void;
   setWsStatus: (status: WsStatus) => void;
   setChatOpen: (open: boolean) => void;
@@ -136,6 +138,7 @@ export const useEnergyStore = create<EnergyStore>((set, get) => {
     solarSlider: 100,
     batterySlider: 68,       // matches initialData.batteryLevel
     gridSlider: 50,
+    p2pSlider: 100,
     backendConnected: false,
     negotiationStatus: 'idle' as const,
     wsStatus: 'idle',
@@ -146,6 +149,7 @@ export const useEnergyStore = create<EnergyStore>((set, get) => {
     setChatOpen: (open) => set({ isChatOpen: open }),
     setLanguage: (lang) => set({ selectedLanguage: lang }),
     setBackendConnected: (connected) => set({ backendConnected: connected }),
+    setP2pSlider: (pct) => set({ p2pSlider: pct }),
 
     runSimulation: async () => {
       if (simulationTimeout) {

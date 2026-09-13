@@ -1,7 +1,6 @@
 'use client';
 
 import { useEnergyStore, AgentDecision } from '../../store/useEnergyStore';
-import { Html } from '@react-three/drei';
 
 const AGENT_ACCENT_COLORS = {
   Solar:     '#FF6600',   // NEO_ORANGE
@@ -16,10 +15,10 @@ export default function AgentOverlay() {
   const agentDecisions = useEnergyStore((state) => state.agentDecisions);
 
   return (
-    <Html pointerEvents="none" position={[-42, 22, -25]} center>
       <div style={{
         pointerEvents: 'auto',
         width: '300px',
+        maxHeight: '100%',
         background: '#FFFFFF',
         border: '2px solid #212121',
         fontFamily: 'monospace',
@@ -103,6 +102,5 @@ export default function AgentOverlay() {
           )}
         </div>
       </div>
-    </Html>
   );
 }

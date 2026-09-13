@@ -30,15 +30,36 @@ export default function CommunityScene() {
         <EnergySliders />
       </div>
 
+      <button
+        type="button"
+        title="North view"
+        style={{
+          position: 'absolute',
+          top: '16px',
+          left: '242px',
+          zIndex: 10,
+          width: '42px',
+          height: '42px',
+          borderRadius: '50%',
+          border: '2px solid #212121',
+          background: '#FFFFFF',
+          color: '#212121',
+          fontFamily: 'monospace',
+          fontSize: '14px',
+          fontWeight: '900',
+          boxShadow: '3px 3px 0 #212121',
+          cursor: 'pointer',
+        }}
+      >
+        N
+      </button>
+
       {/* R3F Canvas */}
       <Canvas
         shadows
         camera={{ position: [-30, 22, 32], fov: 45 }}
         gl={{ antialias: true, alpha: false }}
       >
-        {/* Floating Agent Messages Panel (Anchored to world space coordinates) */}
-        <AgentOverlay />
-
         {/* Dynamic environmental weather effects & lights */}
         <ScenarioEffects />
 
@@ -89,6 +110,19 @@ export default function CommunityScene() {
         <div>🟢 BATTERY</div>
         <div>🔴 GRID</div>
         <div style={{ color: '#8B5CF6' }}>🟣 P2P TRADE</div>
+      </div>
+
+      <div style={{
+        position: 'absolute',
+        bottom: '16px',
+        left: '16px',
+        zIndex: 10,
+        pointerEvents: 'none',
+        width: '300px',
+        maxHeight: '42%',
+        overflow: 'hidden',
+      }}>
+        <AgentOverlay />
       </div>
 
       {/* Floating Camera Help Tip Overlay - Neo-Brutalist Reskinned */}

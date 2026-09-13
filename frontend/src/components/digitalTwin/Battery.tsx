@@ -54,6 +54,7 @@ export default function Battery() {
       const mat = innerRef.current.material as THREE.MeshStandardMaterial;
       mat.color.set(coreColor);
       mat.emissive.set(coreColor);
+      mat.emissiveIntensity = 0.7 + (batteryLevel / 100) * 1.8;
     }
   });
 
@@ -101,7 +102,12 @@ export default function Battery() {
       </mesh>
 
       {/* Point light to project glow */}
-      <pointLight color={coreColor} intensity={3.5} distance={15} position={[0, 0, 0]} />
+      <pointLight
+        color={coreColor}
+        intensity={1.5 + (batteryLevel / 100) * 5}
+        distance={15}
+        position={[0, 0, 0]}
+      />
 
       {/* Charge/discharge pulse rings */}
       {[0, 1, 2].map((i) => (
