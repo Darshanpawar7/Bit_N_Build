@@ -2,24 +2,11 @@
 
 **An autonomous multi-agent microgrid resilience system for predicting grid stress, coordinating local energy exchange, and protecting communities during peak demand.**
 
-## 📌 Attribution & Project Evolution
+## 📌 Ownership
 
-FlowState was developed by extending the publicly available **FlowState** project.
+FlowState was designed and built entirely by the **Bit-by-Bit** team for the Bit N Build hackathon.
 
-The original FlowState project provided the initial multi-agent energy architecture, simulation environment, digital-twin interface, and energy optimization components.
-
-### Our Contributions
-
-Our team extended that foundation with:
-
-- **Resilience Agent** for grid-stress and failure-risk assessment
-- **P2P energy coordination** for local energy matching
-- **Peak-demand scenario** for grid stress simulation
-- **Autonomous recovery planning**
-- **FlowState resilience visualization**
-- integration of resilience decisions into the existing agent pipeline
-
-The original project's attribution and licensing requirements are retained where applicable.
+Our team created the multi-agent energy architecture, simulation environment, digital-twin interface, energy optimization components, resilience layer, P2P coordination, autonomous recovery planning, and FlowState visualization.
 
 ## 🎯 Challenge Track
 
@@ -227,8 +214,8 @@ Visit `http://localhost:3000` to open the FlowState digital twin.
 
 ## 👥 Team
 
-**FlowState**
+**Bit-by-Bit — FlowState**
 
 | Prithvi S P | Darshan Pawar | Chandan Kumar K |
 
-Built it for the **Bit N Build** Hackathon.
+Designed and built entirely by the **Bit-by-Bit** team for the **Bit N Build** Hackathon.
