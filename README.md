@@ -1,118 +1,214 @@
-<div align="center">
-  <img src="logo.jpg" alt="AgentGrid Logo" width="500" style="border-radius: 20px; box-shadow: 0 10px 20px rgba(0,0,0,0.2); margin-bottom: 20px;" />
+# ⚡ GRIDSWARM ⚡
 
-# ⚡ AGENTGRID ⚡
+**An autonomous multi-agent microgrid resilience system for predicting grid stress, coordinating local energy exchange, and protecting communities during peak demand.**
 
-**An Autonomous Multi-Agent Energy Operating System that transforms residential communities into self-optimizing sustainable ecosystems.**
+## 📌 Attribution & Project Evolution
 
+GridSwarm was developed by extending the publicly available **AGENTGRID** project.
 
+The original AGENTGRID project provided the initial multi-agent energy architecture, simulation environment, digital-twin interface, and energy optimization components.
 
-![Hackathon](https://img.shields.io/badge/Hackprix-Season_3_Hyderabad-8A2BE2?style=for-the-badge)
-[![Tech Stack](https://img.shields.io/badge/Tech-React_|_FastAPI_|_LLM-blue?style=for-the-badge)](#)
+### Our Contributions
 
-</div>
+Our team extended that foundation with:
 
-<br/>
+- **Resilience Agent** for grid-stress and failure-risk assessment
+- **P2P energy coordination** for local energy matching
+- **Peak-demand scenario** for grid stress simulation
+- **Autonomous recovery planning**
+- **GridSwarm resilience visualization**
+- integration of resilience decisions into the existing agent pipeline
 
-## 🏆 Hackathon Details
-> **Hackprix Season 3 Hyderabad**  
-> **Team Lazy ppl:** [Abdul Raheem](https://github.com/abd-RAHEEM) | [Mohammed Abdul Rafe Sajid](https://github.com/Mohammed-Abdul-Rafe-Sajid) | [Sheikh Abdullah](https://github.com/sheikhabd22) | [Akber Hussain](https://github.com/AKBER-HUSSAIN)
+The original project's attribution and licensing requirements are retained where applicable.
 
----
+## 🎯 Challenge Track
+
+> **Decentralised Energy Systems & Micro-Grids**
+
+### Problem
+
+Create agent networks that monitor hyper-local power generation, predict grid failures, and autonomously execute peer-to-peer energy trading during peak demand.
+
+### Our Approach
+
+GridSwarm extends a multi-agent microgrid foundation with an autonomous resilience layer that:
+
+- detects grid stress and estimates failure risk
+- identifies available local energy
+- coordinates peer-to-peer energy transfers
+- plans autonomous recovery actions
+- works alongside deterministic energy optimization
 
 ## 🌍 The Vision
 
-Traditional energy grids are reactive and central-heavy. **AGENTGRID** reimagines energy distribution as a living, breathing digital organism. By assigning specialized, LLM-powered AI agents to different nodes of a community (Houses, EVs, Solar Farms, Batteries), the system enables real-time negotiation, peer-to-peer energy trading, and autonomous crisis management.
+Traditional microgrids often react to instability after it occurs.
 
-## 🚀 Key Innovations
+**GridSwarm takes a proactive approach.**
 
-### 1. Multi-Agent State Graph (Powered by LangGraph)
-Instead of disjointed LLM prompts, the community is modeled as a sequential, state-mutating graph where each agent acts as a specialized node optimizing for its unique constraints:
-* **☀️ Solar Agent:** Predicts immediate generation curves based on real-time weather data.
-* **🔋 Battery Agent:** Evaluates current State of Charge (SoC) limits and health metrics.
-* **🏠 House Agent:** Ingests household load data and categorizes appliances by critical vs. non-critical priorities.
-* **🚗 EV Agent:** Calculates charging flexibility windows based on departure slack times.
-* **🏢 Grid Agent:** Monitors macro-demand, dynamic utility pricing, and prevents localized blackouts.
+Multiple specialized agents continuously evaluate generation, consumption, storage, EV demand, and grid conditions. When the system detects rising instability, it coordinates local energy resources before a failure propagates.
 
-As the state passes through the graph (`SolarAgent` → `BatteryAgent` → `HouseAgent` → `EVAgent` → `GridAgent`), each node enriches a shared community state object with domain-specific constraints before passing it to downstream layers.
+The goal is simple:
 
-### 2. Mathematical Supply-Demand Optimization
-Once the state graph is fully enriched, it feeds into a centralized dispatch engine that executes algorithmic load shedding and balancing during energy shortfalls:
-* **Battery Priority:** Maximizes local storage discharge before drawing expensive grid power.
-* **EV Flex-Window Slack:** Dynamically defers EV charging based on a **Longest Slack First (LSF)** queuing model.
-* **Algorithmic Load Shedding:** Triggers automated shedding of non-critical household loads based on user-defined priority queues to guarantee microgrid stability.
+> **Predict → Coordinate → Act → Stabilize**
 
-## 🎙️ Indic Language Accessibility Layer (Sarvam AI) 🏆
+## 🤖 Autonomous Resilience Layer
 
+GridSwarm introduces a new resilience layer into the existing agent pipeline.
 
+### Resilience Agent
 
-Smart-grid dashboards typically assume high English literacy and tech-savviness, creating severe adoption barriers for residential communities in India. AgentGrid breaks this barrier by wrapping the entire operating system in a multilingual voice-to-action pipeline built on **Sarvam AI's speech stack**. Residents can manage their entire microgrid naturally in **Hindi, Telugu, Urdu, and Indian English**.
+The Resilience Agent evaluates:
 
-                    ┌──────────────────────────────┐
-                    │ LangGraph & Dispatch Engine  │
-                    └──────────────┬───────────────┘
-                                   │
-                                   ▼
-                           [System Action]
+- current energy demand
+- renewable generation
+- battery state of charge
+- EV charging pressure
+- grid availability
 
-  [User Voice Command] 🗣️
-          │
-          ▼ (STT: saaras:v3)
-  [Structured Vernacular Text]
-          │
-          ▼ (Translation: mayura:v1)
-  [English Queries]
-          │
-          ▼ (Translation: mayura:v1)
-  [Vernacular Action/Response]
-          │
-          ▼ (TTS: bulbul:v3)
-  [Natural Audio Feedback] 🔊
+It produces a normalized grid-risk score:
 
-### 🎮 Immersive 3D Digital Twin UI
-AgentGrid doesn't just output charts—it provides a stunning **interactive 3D environment** that acts as your window into the ecosystem.
-- **Spatial Monitoring:** Pan, zoom, and rotate around the virtual community to inspect individual nodes in real-time.
-- **Live Energy Flows:** Visual pulse lines represent the active transfer of energy between houses, the solar farm, and the main grid.
-- **Dynamic Scenario Visualization:** Trigger a 'Storm' or 'Heatwave' and watch the UI react with visual effects while agents scramble to preserve battery life and adapt to the crisis.
+```text
+LOW       → stable operation
+MEDIUM    → preventive actions armed
+HIGH      → autonomous recovery activated
+```
 
-### 💬 Multilingual Conversational Advisor
-Talk directly to your energy grid! Using voice or text, users can interrogate the system:
-* *"Why is house 3 consuming so much power?"*
-* *"Simulate a heatwave for the next 4 hours and optimize the battery."*
+### P2P Coordination
 
----
+When local energy is available, the agent identifies compatible buyers and sellers and creates simulated peer-to-peer energy transfers.
 
-## ⚙️ Architecture & Tech Stack
+Example:
 
-<div align="center">
-  <img src="https://img.shields.io/badge/Next.js-black?style=for-the-badge&logo=next.js&logoColor=white" />
-  <img src="https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white" />
-  <img src="https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white" />
-  <img src="https://img.shields.io/badge/FastAPI-009688?style=for-the-badge&logo=fastapi&logoColor=white" />
-</div>
+```text
+COMMUNITY SOLAR
+      ↓
+   2.8 kWh
+      ↓
+HOUSE H07
+```
 
-- **Frontend:** Next.js, React, Tailwind CSS, WebSockets for live data streaming, and dynamic rendering for the 3D digital twin.
-- **Backend:** Python, FastAPI, WebSockets.
-- **AI/LLMs:** Groq & Sarwam API integration for hyper-fast agent reasoning and multilingual support.
+### Autonomous Recovery
 
----
+During high-risk conditions, GridSwarm can recommend:
+
+- local P2P energy transfer
+- battery reserve activation
+- EV charging deferral
+- flexible load shifting
+- island-mode operation during grid outages
+
+## 🧠 GridSwarm Architecture
+
+```text
+             Community State
+                    │
+                    ▼
+              Solar Agent
+                    │
+                    ▼
+             Battery Agent
+                    │
+                    ▼
+             House Agents
+                    │
+                    ▼
+                EV Agent
+                    │
+                    ▼
+               Grid Agent
+                    │
+                    ▼
+          ┌──────────────────┐
+          │ Resilience Agent │
+          └────────┬─────────┘
+                   │
+          ┌────────┴────────┐
+          ▼                 ▼
+     P2P Coordination   Risk Assessment
+          │                 │
+          └────────┬────────┘
+                   ▼
+        Autonomous Recovery Plan
+                   │
+                   ▼
+              Optimizer
+                   │
+                   ▼
+             Final Dispatch
+```
+
+## ⚡ Demo Scenario: Peak Demand
+
+GridSwarm can simulate a sudden community-wide demand spike.
+
+### Step 1 — Detect
+
+Household demand rises sharply.
+
+### Step 2 — Assess
+
+The Resilience Agent calculates grid instability risk.
+
+### Step 3 — Coordinate
+
+The P2P Agent searches for locally available energy.
+
+### Step 4 — Recover
+
+The system prioritizes:
+
+1. Local renewable energy
+2. Peer-to-peer transfers
+3. Battery support
+4. Flexible EV charging
+5. Flexible household loads
+
+### Step 5 — Stabilize
+
+The optimizer calculates the final dispatch and the dashboard reports:
+
+- failure risk
+- energy traded locally
+- battery support
+- deferred loads
+- remaining grid import
+
+## 🎮 Digital Twin
+
+The interactive 3D dashboard provides:
+
+- spatial monitoring of houses, EVs, solar, battery, and grid nodes
+- animated solar, battery, grid, and P2P energy flows
+- selectable peak-demand, heatwave, cloud-cover, outage, and EV-surge scenarios
+- live agent negotiation logs and resilience status
+
+## ⚙️ Tech Stack
+
+- **Frontend:** Next.js, React, Tailwind CSS, Three.js / React Three Fiber
+- **Backend:** Python, FastAPI, WebSockets
+- **Agent Orchestration:** LangGraph
+- **LLM Infrastructure:** Groq
+- **Energy Optimization:** Deterministic dispatch and load-management logic
+- **Simulation:** Synthetic community energy scenarios
 
 ## 💻 Get Started Locally
 
 ### 1. Clone the repository
+
 ```bash
-git clone https://github.com/abd-RAHEEM/AGENTGRID.git
-cd AGENTGRID
+git clone https://github.com/Darshanpawar7/Bit_N_Build.git
+cd Bit_N_Build
 ```
 
 ### 2. Backend Setup
+
 ```bash
 cd backend
 python -m venv venv
 venv\Scripts\activate  # On Windows
 pip install -r requirements.txt
 
-# Create a .env file and add your API keys:
+# Create a .env file and add your API keys when using live providers:
 # GROQ_API_KEY=your_key
 # SARWAM_API_KEY=your_key
 
@@ -120,15 +216,19 @@ uvicorn main:app --reload
 ```
 
 ### 3. Frontend Setup
+
 ```bash
 cd frontend
 npm install
 npm run dev
 ```
 
-Visit `http://localhost:3000` to dive into the digital twin!
+Visit `http://localhost:3000` to open the GridSwarm digital twin.
 
----
-<div align="center">
-  <p>Built with immense caffeine and 💖 by <b>Lazy ppl</b></p>
-</div>
+## 👥 Team
+
+**FlowState**
+
+| Prithvi S P | Darshan Pawar | Chandan Kumar K |
+
+Built it for the **Bit N Build** Hackathon.
