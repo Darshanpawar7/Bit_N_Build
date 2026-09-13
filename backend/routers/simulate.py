@@ -107,6 +107,7 @@ async def simulate(req: SimulateRequest):
     decisions = result.get("decisions", {})
     return {
         "decisions":         decisions,
+        "resilience":        decisions.get("resilience", {}),
         "community_metrics": _map_to_frontend_metrics(result, decisions),
         "logs":              result.get("logs", []),
         "scenario":          req.scenario,
@@ -179,6 +180,7 @@ async def negotiate_websocket(websocket: WebSocket):
         await websocket.send_json({
             "type":              "decisions",
             "decisions":         decisions,
+            "resilience":        decisions.get("resilience", {}),
             "community_metrics": community_metrics,
         })
         await websocket.send_json({"type": "done"})

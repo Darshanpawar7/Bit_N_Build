@@ -28,6 +28,17 @@ export interface EnergyStore {
     carbonReduced: number;        // kg CO₂
     renewableUsage: number;       // %
   };
+  resilience: {
+    risk_score: number;
+    risk_level: string;
+    p2p_trades: Array<{
+      seller: string;
+      buyer: string;
+      energy_kwh: number;
+      price_inr_per_kwh: number;
+    }>;
+    local_energy_traded_kwh: number;
+  };
   houses: House[];               // array of 50 houses
   activeScenario: ActiveScenario;
   agentDecisions: AgentDecision[];
@@ -110,6 +121,12 @@ export const useEnergyStore = create<EnergyStore>((set, get) => {
       carbonReduced: initialData.carbonReduced,
       renewableUsage: initialData.renewableUsage,
     },
+    resilience: {
+      risk_score: 0.18,
+      risk_level: 'LOW',
+      p2p_trades: [],
+      local_energy_traded_kwh: 0,
+    },
     houses: initialHouses,
     activeScenario: initialScenario,
     agentDecisions: initialData.agentDecisions,
@@ -150,10 +167,11 @@ export const useEnergyStore = create<EnergyStore>((set, get) => {
           });
           if (response.ok) {
             const data = await response.json();
-            set({
-              community:        data.community_metrics,
+            set((state) => ({
+              community: data.community_metrics ?? state.community,
+              resilience: data.resilience ?? state.resilience,
               backendConnected: true,
-            });
+            }));
           }
         } catch (err) {
           set({ backendConnected: false });
@@ -297,6 +315,7 @@ export const useEnergyStore = create<EnergyStore>((set, get) => {
           const data = await response.json();
           set(state => ({
             community:        { ...state.community, ...data.community_metrics },
+            resilience: data.resilience ?? state.resilience,
             backendConnected: true,
           }));
           return;
@@ -393,6 +412,7 @@ export const useEnergyStore = create<EnergyStore>((set, get) => {
                 carbonReduced:   m.carbonReduced   ?? state.community.carbonReduced,
                 renewableUsage:  m.renewableUsage  ?? state.community.renewableUsage,
               },
+              resilience: msg.resilience ?? state.resilience,
             }));
           }
 
