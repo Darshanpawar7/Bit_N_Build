@@ -18,7 +18,13 @@ import copy
 from agents.state import CommunityState
 from agents.logger import log_event
 
-VALID_SCENARIOS = {"cloud_cover", "heatwave", "grid_failure", "ev_surge"}
+VALID_SCENARIOS = {
+    "cloud_cover",
+    "heatwave",
+    "grid_failure",
+    "ev_surge",
+    "peak_demand",
+}
 
 
 def inject_scenario(state: CommunityState, event: str) -> CommunityState:
@@ -26,7 +32,8 @@ def inject_scenario(state: CommunityState, event: str) -> CommunityState:
 
     Args:
         state: The CommunityState to mutate (mutated in place and returned).
-        event: One of "cloud_cover", "heatwave", "grid_failure", "ev_surge".
+        event: One of "cloud_cover", "heatwave", "grid_failure", "ev_surge",
+            "peak_demand".
 
     Returns:
         The mutated CommunityState.
@@ -47,6 +54,8 @@ def inject_scenario(state: CommunityState, event: str) -> CommunityState:
         _apply_grid_failure(state)
     elif event == "ev_surge":
         _apply_ev_surge(state)
+    elif event == "peak_demand":
+        _apply_peak_demand(state)
 
     return state
 
@@ -126,6 +135,7 @@ def get_scenario_description(event: str) -> str:
         "heatwave": "Heatwave increases household AC demand by 65%",
         "grid_failure": "Grid outage — no import available, price set to 0",
         "ev_surge": "Unexpected EV charging surge — demand +50%, all charging",
+        "peak_demand": "Peak demand event — local consumption spikes sharply",
     }
     return descriptions.get(event, "Unknown scenario")
 
@@ -134,3 +144,24 @@ def make_state_copy(state: CommunityState) -> CommunityState:
     """Return a deep copy of state, useful for testing scenarios without
     mutating the original (e.g. comparing before/after)."""
     return copy.deepcopy(state)
+
+
+def _apply_peak_demand(state: CommunityState) -> None:
+    """Simulate a sudden local demand spike."""
+    households = state["households"]
+
+    total_before = sum(h["current_demand"] for h in households)
+
+    for house in households:
+        if house["priority"] == "critical":
+            house["current_demand"] *= 1.15
+        else:
+            house["current_demand"] *= 1.80
+
+    total_after = sum(h["current_demand"] for h in households)
+
+    log_event(
+        state,
+        f"Scenario [peak_demand]: community demand increased "
+        f"from {total_before:.1f} kWh to {total_after:.1f} kWh."
+    )

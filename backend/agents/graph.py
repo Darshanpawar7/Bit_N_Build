@@ -5,11 +5,12 @@ LangGraph graph topology for AGENTGRID multi-agent system.
 Sequential, deterministic flow (no branching, no subgraphs, no dynamic
 routing):
 
-    SolarAgent -> BatteryAgent -> HouseAgent -> EVAgent -> GridAgent -> Optimizer
+    SolarAgent -> BatteryAgent -> HouseAgent -> EVAgent -> GridAgent
+    -> ResilienceAgent -> Optimizer
 """
 
 from langgraph.graph import StateGraph
-
+from agents.resilience_agent import resilience_agent_fn
 from agents.state import CommunityState
 from agents.solar_agent import solar_agent_fn
 from agents.battery_agent import battery_agent_fn
@@ -30,6 +31,7 @@ def build_graph():
     graph.add_node("ev_agent", ev_agent_fn)
     graph.add_node("grid_agent", grid_agent_fn)
     graph.add_node("optimizer", optimizer_fn)
+    graph.add_node("resilience_agent", resilience_agent_fn)
 
     # Sequential flow — each agent enriches state before passing it on.
     graph.set_entry_point("solar_agent")
@@ -37,7 +39,8 @@ def build_graph():
     graph.add_edge("battery_agent", "house_agents")
     graph.add_edge("house_agents", "ev_agent")
     graph.add_edge("ev_agent", "grid_agent")
-    graph.add_edge("grid_agent", "optimizer")
+    graph.add_edge("grid_agent", "resilience_agent")
+    graph.add_edge("resilience_agent", "optimizer")
     graph.set_finish_point("optimizer")
 
     return graph.compile()
